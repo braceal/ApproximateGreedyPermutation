@@ -68,9 +68,9 @@ def set_package_name(name: str):
     base_path = get_root_path()
 
     for file in files:
-        replace_file_content(os.path.join(base_path, file), 'REPONAME', name)
+        replace_file_content(os.path.join(base_path, file), 'ApproximateGreedyPermutation', name)
 
-    shutil.move(os.path.join(base_path, 'REPONAME'),
+    shutil.move(os.path.join(base_path, 'ApproximateGreedyPermutation'),
                 os.path.join(base_path, name))
 
 
