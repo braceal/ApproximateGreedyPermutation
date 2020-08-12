@@ -33,7 +33,7 @@ setup(
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     packages=find_packages(),
-    url='',
+    url='https://github.com/braceal/ApproximateGreedyPermutation',
     test_suite="unittest",
     long_description=readme,
     long_description_content_type='text/markdown',
