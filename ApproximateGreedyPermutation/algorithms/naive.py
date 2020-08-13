@@ -3,7 +3,7 @@ import numpy as np
 from scipy.spatial import distance_matrix
 
 @numba.jit
-def farthest_first_traversal(dist, row_ind=0):
+def _farthest_first_traversal(dist, row_ind=0):
 
     N = len(dist)
 
@@ -11,10 +11,12 @@ def farthest_first_traversal(dist, row_ind=0):
     distant_inds = set()
 
     for i in range(N):
+        old_row_ind = row_ind # TODO: remove, for debugging
         # Row array
         row = dist[row_ind]
         maximal_dist = 0.
-        # Set row_ind to maximal element in the row
+        # Set row_ind to maximal element in the row that
+        # has not been seen before
         for j in range(N):
             if j not in distant_inds:
                 d = row[j]
@@ -22,11 +24,15 @@ def farthest_first_traversal(dist, row_ind=0):
                     maximal = d
                     row_ind = j
 
+        assert old_row_ind != row_ind
+        # Add vector furthest away from current vector (row)
+        distant_inds.add(row_ind)
+
         # Collect the first k only
         if len(distant_inds) >= k:
             return data[list(distant_inds)]
 
-def naive(data, k, minkowski=2, threshold=1000000):
+def farthest_first_traversal(data, k, minkowski=2, threshold=1000000):
     """
     Furthest first traversal in O(n^2) time and space
 
@@ -62,4 +68,4 @@ def naive(data, k, minkowski=2, threshold=1000000):
     # Randomly choose starting vector.
     row_ind = np.random.randint(low=0, high=len(data))
 
-    return farthest_first_traversal(dist, row_ind)
+    return _farthest_first_traversal(dist, row_ind)
