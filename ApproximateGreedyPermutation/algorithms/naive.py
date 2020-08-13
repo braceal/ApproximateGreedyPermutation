@@ -2,6 +2,7 @@ import numba
 import numpy as np
 from scipy.spatial import distance_matrix
 
+
 @numba.jit
 def _farthest_first_traversal(dist, row_ind=0):
 
