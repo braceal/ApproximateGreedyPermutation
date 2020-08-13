@@ -2,6 +2,7 @@ import numba
 import numpy as np
 from scipy.spatial import distance_matrix
 
+
 @numba.jit
 def farthest_first_traversal(dist, row_ind=0):
 
@@ -25,6 +26,7 @@ def farthest_first_traversal(dist, row_ind=0):
         # Collect the first k only
         if len(distant_inds) >= k:
             return data[list(distant_inds)]
+
 
 def naive(data, k, minkowski=2, threshold=1000000):
     """
