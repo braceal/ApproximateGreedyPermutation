@@ -4,7 +4,7 @@ from scipy.spatial import distance_matrix
 
 
 @numba.jit
-def _farthest_first_traversal(dist, row_ind=0):
+def _farthest_first_traversal(dist, k, row_ind=0):
 
     N = len(dist)
 
@@ -31,7 +31,7 @@ def _farthest_first_traversal(dist, row_ind=0):
 
         # Collect the first k only
         if len(distant_inds) >= k:
-            return data[list(distant_inds)]
+            return list(distant_inds)
 
 
 def farthest_first_traversal(data, k, minkowski=2, threshold=1000000):
@@ -70,4 +70,5 @@ def farthest_first_traversal(data, k, minkowski=2, threshold=1000000):
     # Randomly choose starting vector.
     row_ind = np.random.randint(low=0, high=len(data))
 
-    return _farthest_first_traversal(dist, row_ind)
+    # Helper function returns indices into data
+    return data[_farthest_first_traversal(dist, k, row_ind)]
