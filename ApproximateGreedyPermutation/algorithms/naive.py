@@ -12,7 +12,7 @@ def _farthest_first_traversal(dist, row_ind=0):
     distant_inds = set()
 
     for i in range(N):
-        old_row_ind = row_ind # TODO: remove, for debugging
+        old_row_ind = row_ind  # TODO: remove, for debugging
         # Row array
         row = dist[row_ind]
         maximal_dist = 0.
@@ -32,6 +32,7 @@ def _farthest_first_traversal(dist, row_ind=0):
         # Collect the first k only
         if len(distant_inds) >= k:
             return data[list(distant_inds)]
+
 
 def farthest_first_traversal(data, k, minkowski=2, threshold=1000000):
     """
