@@ -1,1 +1,0 @@
-from .farthest_first_traversal import farthest_first_traversal

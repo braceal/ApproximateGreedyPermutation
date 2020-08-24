@@ -2,4 +2,4 @@ include *.txt
 include *.md
 include LICENSE
 include versioneer.py
-include ApproximateGreedyPermutation/_version.py
+include DiverseSMILES/_version.py

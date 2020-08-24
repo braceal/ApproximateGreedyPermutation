@@ -29,11 +29,11 @@ readme = read_file(os.path.join(os.path.dirname(__file__), "README.md"))
 
 
 setup(
-    name='ApproximateGreedyPermutation',
+    name='DiverseSMILES',
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     packages=find_packages(),
-    url='https://github.com/braceal/ApproximateGreedyPermutation',
+    url='https://github.com/braceal/DiverseSMILES',
     test_suite="unittest",
     long_description=readme,
     long_description_content_type='text/markdown',
