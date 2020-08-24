@@ -5,25 +5,19 @@ from ApproximateGreedyPermutation.algorithms import farthest_first_traversal, in
 
 
 @click.command()
-
 @click.option('-n', '--num_samples', default=100,
               help='Number of samples to run.')
-
 @click.option('-d', '--dimension', default=2,
               help='Dimensions of vectors.')
-
 @click.option('-k', '--selection', default=10,
               help='Number of maximally distant vectors.')
-
 @click.option('-m', '--minkowski', default=2,
               help='Which Minkowski p-norm to use.')
-
 @click.option('-e', '--sample_edge', is_flag=True,
-              help='Samples around the edge of the space ' \
+              help='Samples around the edge of the space '
                    'an avoids center points.')
-
 def main(num_samples, dimension, selection, minkowski, sample_edge):
-    
+
     data = np.random.normal(size=(num_samples, dimension))
 
     print(data.shape)
@@ -48,6 +42,7 @@ def main(num_samples, dimension, selection, minkowski, sample_edge):
     ax.set_ylabel('x2')
     ax.set_title(f'K = {selection} farthest points')
     plt.show()
+
 
 if __name__ == '__main__':
     main()

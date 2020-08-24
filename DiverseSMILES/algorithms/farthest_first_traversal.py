@@ -23,14 +23,14 @@ def _farthest_first_traversal(dist, k, row_ind=0, sample_edge=False):
         # cur_dists = []
         for j in range(N):
             if j not in distant_inds:
-                
+
                 # Sum of distances from all previous points to current point
                 s = 0.
                 if sample_edge:
                     for p in distant_inds:
                         s += dist[j][p]
-                #all_dists.append(s)
-                #all_inds.append(j)
+                # all_dists.append(s)
+                # all_inds.append(j)
 
                 s += row[i]
 
@@ -38,10 +38,9 @@ def _farthest_first_traversal(dist, k, row_ind=0, sample_edge=False):
 
                 # Current maximal distance
                 if s > maximal_dist:
-                   maximal_dist = s
-                   row_ind = j
-                #cur_dists.append(row[j]) 
-
+                    maximal_dist = s
+                    row_ind = j
+                # cur_dists.append(row[j])
 
         assert (old_row_ind != row_ind) or i == 0
         # Add vector furthest away from current vector (row)
@@ -73,14 +72,18 @@ def _farthest_first_traversal(dist, k, row_ind=0, sample_edge=False):
 
 def distance(A, B):
     return np.linalg.norm(A - B)
+
+
 import random
+
+
 def incremental_farthest_search(points, k):
     remaining_points = list(points[:])
     solution_set = []
     solution_inds = []
     solution_inds.append(random.randint(0, len(remaining_points) - 1))
     solution_set.append(remaining_points.pop(solution_inds[-1]))
-    for _ in range(k-1):
+    for _ in range(k - 1):
         distances = [distance(p, solution_set[0]) for p in remaining_points]
         for i, p in enumerate(remaining_points):
             for j, s in enumerate(solution_set):
@@ -88,7 +91,6 @@ def incremental_farthest_search(points, k):
         solution_inds.append(distances.index(max(distances)))
         solution_set.append(remaining_points.pop(solution_inds[-1]))
     return solution_set, solution_inds
-
 
 
 def farthest_first_traversal(data, k, minkowski=2, threshold=1000000, sample_edge=False):
