@@ -8,6 +8,9 @@ def _farthest_first_traversal(dist, k, row_ind=0, sample_edge=False):
 
     N = len(dist)
 
+    if N == k:
+        return list(range(N))
+
     # Collect indices of maximally distant vectors in the data array
     distant_inds = set()
 
