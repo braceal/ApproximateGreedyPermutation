@@ -2,6 +2,7 @@ import random
 import numpy as np
 from scipy.spatial import distance_matrix
 
+
 def mitchells_best_candidate(data, k, candidates=10, minkowski=2, threshold=1000000):
     """
     Approximates Poisson-disc distribution.
