@@ -18,24 +18,24 @@ def _farthest_first_traversal(dist, k, row_ind=0, sample_edge=False):
         old_row_ind = row_ind  # TODO: remove, for debugging
         # Row array
         row = dist[row_ind]
-        maximal_dist = 0.
+        max_dist = 0.
         # Set row_ind to maximal element in the row that
         # has not been seen before
         for j in range(N):
             if j not in distant_inds:
 
-                s = row[j]
+                s = row[j if sample_edge else i]
 
                 # Sum of distances from all previous points to current point
-                if sample_edge:
-                    for p in distant_inds:
-                        s += dist[j][p]
+                # if sample_edge:
+                #     for p in distant_inds:
+                #         s += dist[j][p]
 
                 #print(f'sum s={s} j={j}')
 
                 # Current maximal distance
-                if s > maximal_dist:
-                    maximal_dist = s
+                if s > max_dist:
+                    max_dist = s
                     row_ind = j
 
         assert (old_row_ind != row_ind) or i == 0

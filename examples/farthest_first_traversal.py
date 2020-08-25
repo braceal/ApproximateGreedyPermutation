@@ -1,7 +1,7 @@
 import click
 import numpy as np
 from matplotlib import pyplot as plt
-from ApproximateGreedyPermutation.algorithms import farthest_first_traversal, incremental_farthest_search
+from DiverseSMILES.algorithms import farthest_first_traversal, mitchells_best_candidate
 
 
 @click.command()
@@ -13,16 +13,24 @@ from ApproximateGreedyPermutation.algorithms import farthest_first_traversal, in
               help='Number of maximally distant vectors.')
 @click.option('-m', '--minkowski', default=2,
               help='Which Minkowski p-norm to use.')
+@click.option('-a', '--algorithm', default='fft',
+              help='Which algorithm to use [fft, mbc]')
+@click.option('-c', '--candidates', default=10,
+              help='How many candidates to use in mbc')
 @click.option('-e', '--sample_edge', is_flag=True,
               help='Samples around the edge of the space '
                    'an avoids center points.')
-def main(num_samples, dimension, selection, minkowski, sample_edge):
+def main(num_samples, dimension, selection, minkowski, algorithm, candidates, sample_edge):
 
     data = np.random.normal(size=(num_samples, dimension))
 
     print(data.shape)
+    print(sample_edge)
 
-    k_inds = farthest_first_traversal(data, selection, minkowski=minkowski, sample_edge=sample_edge)
+    if algorithm == 'fft':
+        k_inds = farthest_first_traversal(data, selection, minkowski=minkowski, sample_edge=sample_edge)
+    elif algorithm == 'mbc':
+        k_inds = mitchells_best_candidate(data, selection, minkowski=minkowski, candidates=candidates)
 
     #k_farthest, k_inds = incremental_farthest_search(data, selection)
 
