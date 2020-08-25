@@ -43,6 +43,7 @@ def _farthest_first_traversal(dist, k, row_ind=0, sample_edge=False):
         if len(distant_inds) >= k:
             return list(distant_inds)
 
+
 def farthest_first_traversal(data, k, minkowski=2, threshold=1000000, sample_edge=False):
     """
     Furthest first traversal in O(n^2) time and space
