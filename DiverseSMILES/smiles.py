@@ -6,12 +6,11 @@ import numpy as np
 
 df = PandasTools.LoadSDF('data/data/ames.sdf')
 #df = pd.read_csv('data/data/ames.csv')
-#print(df) 
+# print(df)
 model = word2vec.Word2Vec.load('data/models/model_300dim.pkl')
 
 
 print(df.keys())
-
 
 
 df['sentence'] = df.apply(lambda x: MolSentence(mol2alt_sentence(x['ROMol'], 1)), axis=1)

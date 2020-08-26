@@ -27,7 +27,6 @@ def main(num_samples, dimension, selection, minkowski, algorithm, candidates, sa
 
     num_samples *= 2
 
-
     print(data.shape)
     print(data)
 
