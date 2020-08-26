@@ -1,2 +1,3 @@
 from .farthest_first_traversal import farthest_first_traversal
 from .mitchells_best_candidate import mitchells_best_candidate
+from .self_avoiding_walk import self_avoiding_walk

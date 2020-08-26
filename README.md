@@ -1,4 +1,14 @@
-# Python Template Repository
+# DiverseSMILES
+
+To install:
+```
+git clone https://github.com/braceal/DiverseSMILES.git
+cd DiverseSMILES
+conda create -n rdkit-env -c rdkit rdkit libboost=1.65.1
+conda activate rdkit-env
+pip install git+https://github.com/samoturk/mol2vec
+pip install -e .
+```
 
 This repository contains a fully-functionable package structure including (empty) tests.
 

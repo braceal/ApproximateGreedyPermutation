@@ -1,7 +1,7 @@
 import click
 import numpy as np
 from matplotlib import pyplot as plt
-from DiverseSMILES.algorithms import farthest_first_traversal, mitchells_best_candidate
+from DiverseSMILES.algorithms import farthest_first_traversal, mitchells_best_candidate, self_avoiding_walk
 
 
 @click.command()
@@ -23,14 +23,20 @@ from DiverseSMILES.algorithms import farthest_first_traversal, mitchells_best_ca
 def main(num_samples, dimension, selection, minkowski, algorithm, candidates, sample_edge):
 
     data = np.random.normal(size=(num_samples, dimension))
+    data = np.concatenate((data, np.random.normal(loc=10, scale=1.5, size=(num_samples, dimension))))
+
+    num_samples *= 2
+
 
     print(data.shape)
-    print(sample_edge)
+    print(data)
 
     if algorithm == 'fft':
         k_inds = farthest_first_traversal(data, selection, minkowski=minkowski, sample_edge=sample_edge)
     elif algorithm == 'mbc':
         k_inds = mitchells_best_candidate(data, selection, minkowski=minkowski, candidates=candidates)
+    elif algorithm == 'saw':
+        k_inds = self_avoiding_walk(data, selection, minkowski=minkowski, candidates=candidates)
 
     #k_farthest, k_inds = incremental_farthest_search(data, selection)
 
