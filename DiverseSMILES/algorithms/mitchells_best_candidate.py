@@ -43,7 +43,6 @@ def _mitchells_best_candidate(data, k, candidates=10, minkowski=2, threshold=100
     return list(inds)
 
 
-
 def mitchells_best_candidate(data, k, candidates=10, minkowski=2, threshold=1000000):
     """
     Approximates Poisson-disc distribution.
