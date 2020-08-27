@@ -4,8 +4,33 @@ from rdkit import Chem
 
 
 def embed_smiles(smiles):
+    """
+    Given a list of smiles string, computes a forward
+    pass through the word2vec model pretrained on smiles
+    strings and returns the embedding vectors.
+
+    Parameters
+    ----------
+    smiles : list, str
+        List of smiles strings or single smile string
+
+    Returns
+    -------
+    list : embedded vectors, 1 for each element in smiles 
+    """
+
+    # Accept single smiles string
+    if isinstance(smiles, str):
+        smiles = [smiles]
+
+    # Load pretrained model weigts
     model = word2vec.Word2Vec.load('data/models/model_300dim.pkl')
-    mols = (Chem.MolFromSmiles(i) for i in smiles)
+
+    # 
+    mols = [Chem.MolFromSmiles(i) for i in smiles]
+
+    print(mols)
+    # TODO: see how mol2alt_sentence works
     sentences = [sentences2vec(MolSentence(mol2alt_sentence(m, 1)), model, unseen='UNK') for m in mols]
     return sentences
 
