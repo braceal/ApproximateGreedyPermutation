@@ -16,7 +16,7 @@ def embed_smiles(smiles):
 
     Returns
     -------
-    list : embedded vectors, 1 for each element in smiles 
+    list : embedded vectors, 1 for each element in smiles
     """
 
     # Accept single smiles string
@@ -26,7 +26,7 @@ def embed_smiles(smiles):
     # Load pretrained model weigts
     model = word2vec.Word2Vec.load('data/models/model_300dim.pkl')
 
-    # 
+    #
     mols = [Chem.MolFromSmiles(i) for i in smiles]
 
     print(mols)
